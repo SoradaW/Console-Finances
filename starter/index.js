@@ -5,24 +5,44 @@ const finances = [
     ['Apr-2010', 500],
 ];
 
-// The total number of months included in the dataset.
+//! The total number of months included in the dataset.
 
 let totalMonths = finances.length;
 console.log('Total number of months: ', totalMonths);
 
-// The net total amount of Profit/Losses over the entire period.
+//! The net total amount of Profit/Losses over the entire period.
+const sumProfitLoss = finances.reduce (
+    (accumulator, currentValue) => accumulator + currentValue[1],
+    0,
+);
+console.log('Total amount of Profit/Losses over the entire period: ', sumProfitLoss);
 
-const profitLoss = finances.filter((el) => el[1]);
-const totalProfitLoss = profitLoss
-    .map((el) => el[1])
-    .reduce((accValue, curValue) => accValue + curValue);
-console.log('Total amount of Profit/Losses over the entire period: ', totalProfitLoss);
+// -- another solution* -- //
+// -- const profitLoss = finances.filter((el) => el[1]); 
+// -- const totalProfitLoss = profitLoss
+    // -- .map((el) => el[1])
+    // -- .reduce((accumulator, currentValue) => accumulator + currentValue);
+// --console.log('Total amount of Profit/Losses over the entire period: ', totalProfitLoss);
 
-// The average of the changes in Profit/Losses over the entire period.
-// You will need to track what the total change in profits is from month to month and then find the average.
+//! The average of the changes in Profit/Losses over the entire period.
+//! You will need to track what the total change in profits is from month to month and then find the average.
 
 const trackChange = finances.map((el) => el[1]);
-const avgProfitLoss = trackChange.reduce((accValue, curValue) => accValue + curValue, 0) / (totalMonths); // (Total/Number of months)
+
+const avgProfitLoss = trackChange.reduce((startValue, subtractValue, i) => {
+    let resultValue = (i > 1) ? startValue : {total: startValue[1], average: startValue[1], sumChange: 0, lastMonth: startValue[1], increase: startValue, decrease: startValue},
+        change = subtractValue[1] - resultValue.lastMonth
+
+    resultValue.total += subtractValue[1]
+    resultValue.sumChange += change
+    resultValue.lastMonth = subtractValue[1]
+    resultValue.average = resultValue.sumChange / i
+    resultValue.increase = (resultValue.includes > change) ? resultValue.increase : [subtractValue[0], change]
+    resultValue.increase = (resultValue.includes < change) ? resultValue.increase : [subtractValue[0], change]
+    return resultValue
+})
+
+//}accValue + curValue, 0) / (totalMonths); // (Total/Number of months)
 console.log('The average of the changes in Profit/Losses: ', avgProfitLoss);
 
 // The greatest increase in profits (date and amount) over the entire period.
@@ -50,3 +70,4 @@ finances.forEach((month) => {
 });
 console.log('The greatest increase in profit is: ', bestMonth);
 console.log('The greatest decrease in profit is: ', badMonth);
+
