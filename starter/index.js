@@ -123,17 +123,17 @@ console.log('Total: ', pounds.format(totalValue));
 //! The average of the changes in Profit/Losses over the entire period.
 //! You will need to track what the total change in profits is from month to month and then find the average. // (Total/Number of months)
 
-const avgProfitLoss = finances.reduce((accumulator, value, totalMonths) => {
-    let result = (totalMonths > 1) ? accumulator : {total: accumulator[1], average: accumulator[1], sumChange: 0, lastMonth: accumulator[1], bestMonth: accumulator, badMonth: accumulator}; // the sumChange and lastMonth values are only there to help with the .reduce() function month over month
-    let change = value[1] - result.lastMonth;
+const avgProfitLoss = finances.reduce((accumulator, currentValue, totalMonths) => {
+    let result = (totalMonths > 1) ? accumulator : {total: accumulator[1], average: accumulator[1], sumChange: 0, lastMonth: accumulator[1], increase: accumulator, decrease: accumulator}; // the sumChange and lastMonth values are only there to help with the .reduce() function month over month
+    let change = currentValue[1] - result.lastMonth;
 
-    result.total += value[1];
+    result.total += currentValue[1]; //addition assignment (+=) operator adds the value of the right operand to a variable and assigns the result to the variable
     result.sumChange += change;
-    result.lastMonth = value[1];
+    result.lastMonth = currentValue[1];
     result.average = result.sumChange/ totalMonths;
 
-    result.bestMonth = (result.bestMonth[1] > change) ? result.bestMonth : [value[0], change];
-    result.badMonth = (result.badMonth[1] < change) ? result.badMonth : [value[0], change];
+    result.increase = (result.increase[1] > change) ? result.increase : [currentValue[0], change];
+    result.decrease = (result.decrease[1] < change) ? result.decrease : [currentValue[0], change];
     return result;
 });
 
@@ -144,8 +144,7 @@ const totalChange = roundAvgNum;
 console.log('Average changes: ', pounds.format(totalChange));
 
 //! The greatest increase in profits (date and amount) over the entire period.
-console.log('Greatest increase in profits: ', avgProfitLoss.bestMonth);
+console.log('Greatest increase in profits: ', avgProfitLoss.increase[0], pounds.format(avgProfitLoss.increase[1]));
 
 //! The greatest decrease in profits (date and amount) over the entire period.
-console.log('Greatest decrease in profits: ', avgProfitLoss.badMonth);
-
+console.log('Greatest decrease in profits: ', avgProfitLoss.decrease[0], pounds.format(avgProfitLoss.decrease[1]));
