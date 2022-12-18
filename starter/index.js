@@ -1,3 +1,9 @@
+let title = 'Financial Analysis';
+console.log (title);
+
+let dash = '-----------------------';
+console.log (dash);
+
 const finances = [
     ['Jan-2010', 867884],
     ['Feb-2010', 984655],
@@ -90,14 +96,14 @@ const finances = [
 //! The total number of months included in the dataset.
 
 let totalMonths = finances.length;
-console.log('Total number of months: ', totalMonths);
+console.log('Total months: ', totalMonths);
 
 //! The net total amount of Profit/Losses over the entire period.
 const sumProfitLoss = finances.reduce (
     (accumulator, currentValue) => accumulator + currentValue[1],
     0,
 );
-console.log('Total amount of Profit/Losses over the entire period: ', sumProfitLoss);
+console.log('Total: $', sumProfitLoss);
 
 // another solution*
 // const profitLoss = finances.filter((el) => el[1]); 
@@ -122,35 +128,16 @@ const avgProfitLoss = finances.reduce((accumulator, value, totalMonths) => {
     result.badMonth = (result.badMonth[1] < change) ? result.badMonth : [value[0], change];
     return result;
 });
-console.log('The average of the changes in Profit/Losses: ', avgProfitLoss.average);
+
+let roundAvgNum = avgProfitLoss.average;
+roundAvgNum = roundAvgNum.toFixed(2);
+
+// round to 2 decimal
+console.log('Average changes: ', roundAvgNum);
+
+//! The greatest increase in profits (date and amount) over the entire period.
 console.log('The greatest increase in profit is: ', avgProfitLoss.bestMonth);
+
+//! The greatest decrease in profits (date and amount) over the entire period.
 console.log('The greatest decrease in profit is: ', avgProfitLoss.badMonth);
-
-
-
-// The greatest increase in profits (date and amount) over the entire period.
-// The greatest decrease in profits (date and amount) over the entire period.
-const bestMonth = {
-    monthName: '',
-    profit: 0,
-};
-
-const badMonth = {
-    monthName: '',
-    profit: 0,
-};
-
-finances.forEach((month) => {
-    if (month[1] > bestMonth.profit) {
-        bestMonth.monthName = month[0];
-        bestMonth.profit = month[1];
-    }
-    if (month[1] < badMonth.profit) {
-        badMonth.monthName = month[0];
-        badMonth.profit = month[1];
-    }
-    return {bestMonth, badMonth}
-});
-console.log('The greatest increase in profit is: ', bestMonth);
-console.log('The greatest decrease in profit is: ', badMonth);
 
