@@ -103,7 +103,15 @@ const sumProfitLoss = finances.reduce (
     (accumulator, currentValue) => accumulator + currentValue[1],
     0,
 );
-console.log('Total: $', sumProfitLoss);
+// Use the Intl.NumberFormat() Constructor to Format Numbers as Currency with no decimal
+const totalValue = sumProfitLoss;
+let pounds = new Intl.NumberFormat ('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+    minimumFractionDigits: 0,
+    useGrouping: false, // currency without commas
+});
+console.log('Total: ', pounds.format(totalValue));
 
 // another solution*
 // const profitLoss = finances.filter((el) => el[1]); 
@@ -130,14 +138,14 @@ const avgProfitLoss = finances.reduce((accumulator, value, totalMonths) => {
 });
 
 let roundAvgNum = avgProfitLoss.average;
-roundAvgNum = roundAvgNum.toFixed(2);
+roundAvgNum = roundAvgNum.toFixed(2); // round to 2 decimal
 
-// round to 2 decimal
-console.log('Average changes: ', roundAvgNum);
+const totalChange = roundAvgNum;
+console.log('Average changes: ', pounds.format(totalChange));
 
 //! The greatest increase in profits (date and amount) over the entire period.
-console.log('The greatest increase in profit is: ', avgProfitLoss.bestMonth);
+console.log('Greatest increase in profits: ', avgProfitLoss.bestMonth);
 
 //! The greatest decrease in profits (date and amount) over the entire period.
-console.log('The greatest decrease in profit is: ', avgProfitLoss.badMonth);
+console.log('Greatest decrease in profits: ', avgProfitLoss.badMonth);
 
