@@ -1,4 +1,4 @@
-# Unit 4 Challenge: Console Finances
+# Challenge: Console Finances
 
 ## JavaScript Fundamentals
 
