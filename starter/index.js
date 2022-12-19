@@ -113,13 +113,6 @@ let USDollar = new Intl.NumberFormat ('en-us', {
 });
 console.log('Total: '+ USDollar.format(totalValue));
 
-// another solution*
-// const profitLoss = finances.filter((el) => el[1]); 
-// const totalProfitLoss = profitLoss
-    // .map((el) => el[1])
-    // .reduce((accumulator, currentValue) => accumulator + currentValue);
-// console.log('Total amount of Profit/Losses over the entire period: ', totalProfitLoss);
-
 //! The average of the changes in Profit/Losses over the entire period.
 //! You will need to track what the total change in profits is from month to month and then find the average. // (Total/Number of months)
 
