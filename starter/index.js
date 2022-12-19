@@ -96,22 +96,22 @@ const finances = [
 //! The total number of months included in the dataset.
 
 let totalMonths = finances.length;
-console.log('Total months: ', totalMonths);
+console.log('Total months: '+ totalMonths);
 
 //! The net total amount of Profit/Losses over the entire period.
 const sumProfitLoss = finances.reduce (
     (accumulator, currentValue) => accumulator + currentValue[1],
     0,
 );
-// Use the Intl.NumberFormat() Constructor to Format Numbers as Currency with no decimal
+// Use the Intl.NumberFormat() Constructor to Format Numbers as Currency 
 const totalValue = sumProfitLoss;
-let pounds = new Intl.NumberFormat ('en-GB', {
+let USDollar = new Intl.NumberFormat ('en-us', {
     style: 'currency',
-    currency: 'GBP',
-    minimumFractionDigits: 0,
-    useGrouping: false, // currency without commas
+    currency: 'USD',
+    minimumFractionDigits: 0, // with 0 decimal
+    useGrouping: false, // currency format without commas
 });
-console.log('Total: ', pounds.format(totalValue));
+console.log('Total: '+ USDollar.format(totalValue));
 
 // another solution*
 // const profitLoss = finances.filter((el) => el[1]); 
@@ -141,10 +141,10 @@ let roundAvgNum = avgProfitLoss.average;
 roundAvgNum = roundAvgNum.toFixed(2); // round to 2 decimal
 
 const totalChange = roundAvgNum;
-console.log('Average changes: ', pounds.format(totalChange));
+console.log('Average changes: $'+totalChange);
 
 //! The greatest increase in profits (date and amount) over the entire period.
-console.log('Greatest increase in profits: ', avgProfitLoss.increase[0], pounds.format(avgProfitLoss.increase[1]));
+console.log('Greatest increase in profits: '+ avgProfitLoss.increase[0], '('+USDollar.format(avgProfitLoss.increase[1])+')');
 
 //! The greatest decrease in profits (date and amount) over the entire period.
-console.log('Greatest decrease in profits: ', avgProfitLoss.decrease[0], pounds.format(avgProfitLoss.decrease[1]));
+console.log('Greatest decrease in profits: '+ avgProfitLoss.decrease[0], '('+'$'+avgProfitLoss.decrease[1]+')'); // + will need space , will space automatically
