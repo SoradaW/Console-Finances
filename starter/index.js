@@ -111,6 +111,14 @@ let USDollar = new Intl.NumberFormat ('en-us', {
     minimumFractionDigits: 0, // with 0 decimal
     useGrouping: false, // currency format without commas
 });
+
+// another solution*
+// const profitLoss = finances.filter((el) => el[1]); 
+// const totalProfitLoss = profitLoss
+    // .map((el) => el[1])
+    // .reduce((accumulator, currentValue) => accumulator + currentValue);
+// console.log('Total: ', totalProfitLoss);
+
 console.log('Total: '+ USDollar.format(totalValue));
 
 //! The average of the changes in Profit/Losses over the entire period.
