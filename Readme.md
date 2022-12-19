@@ -32,7 +32,7 @@ When I open my code in the browser the resulting analysis should look similar to
 
 ### Here is what my code looks like:
 
- ![My JS code](/images/Console-results.jpg)
+ ![My JS code](images\Console-results.jpg)
 
 ## Link to deployed application
 
