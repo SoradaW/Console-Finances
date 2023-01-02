@@ -2,7 +2,7 @@
 
 ## JavaScript Fundamentals
 
-To write JavaScript code that analyzes the records to calculate each of the following:
+Demonstrate JavaScript code that analyses the records to calculate each of the following:
 
 * The total number of months included in the dataset.
 
