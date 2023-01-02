@@ -1,10 +1,8 @@
-# Challenge: Console Finances
+# Console Finances
 
 ## JavaScript Fundamentals
 
-### My Tasks
-
-Is to write JavaScript code that analyzes the records to calculate each of the following:
+To write JavaScript code that analyzes the records to calculate each of the following:
 
 * The total number of months included in the dataset.
 
@@ -17,28 +15,11 @@ Is to write JavaScript code that analyzes the records to calculate each of the f
 
 * The greatest decrease in profits (date and amount) over the entire period.
 
-When I open my code in the browser the resulting analysis should look similar to the following and the final code should print the analysis to the console.
+When open my code in the browser the resulting analysis should look like the following image and the final code should print the analysis to the console.
 
-
-  ```text
-  Financial Analysis
-  ----------------------------
-  Total Months: 25
-  Total: $2561231
-  Average  Change: $-2315.12
-  Greatest Increase in Profits: Feb-2012 ($1926159)
-  Greatest Decrease in Profits: Sep-2013 ($-2196167)
-  ```
-
-### Here is what my code looks like:
-
- ![My JS code](./images/Console-results.jpg)
+![My JS code](./images/Console-results.jpg)
 
 ## Link to deployed application
 
 https://soradaw.github.io/Console-Finances/
-
-### Copyright
-
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
 
